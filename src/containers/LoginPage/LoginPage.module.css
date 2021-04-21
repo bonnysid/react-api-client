@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background: #F7F7F7;
 }
 
 .form {
@@ -19,4 +20,16 @@
 
 .logoStyled {
     margin-bottom: 20px;
+}
+
+.title {
+    font-family: SF Pro Text, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    color: #0D0D0D;
+    margin: 20px 0px;
 }

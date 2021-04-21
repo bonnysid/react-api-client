@@ -35,11 +35,12 @@ function LoginPage() {
                 onSubmit={onSubmit}
                 render={({handleSubmit}) => (
                     <form className={s.form} onSubmit={handleSubmit}>
+                        <h2 className={s.title}>API-консолька</h2>
                         <Field name={'login'} type={'text'} render={(props) => <Input name={'Логин'} placeholder={'Логин'} {...props}/>}/>
                         <Field name={'sublogin'} type={'text'} render={(props) => <Input name={'Сублогин'} placeholder={'Сублогин'} {...props}/>}/>
                         <Field name={'password'} type={'password'}  render={(props) => <Input name={'Пароль'} placeholder={'Пароль'} {...props}/>}/>
                         <Button type="submit">
-                            Отправить
+                            Войти
                         </Button>
                     </form>
                 )}/>
