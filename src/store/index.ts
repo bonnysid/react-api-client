@@ -1,10 +1,9 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {createStore, applyMiddleware, combineReducers, Middleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-import rootReducer from 'src/store/reducers/index';
-import rootSaga from 'src/store/sagas/index';
+import reducers from '../store/reducers/index';
+import rootSaga from '../store/sagas/index';
 
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
@@ -12,7 +11,14 @@ const persistConfig = {
     storage,
 };
 
-const bindMiddleware = (middleware) => {
+const rootReducer = combineReducers({
+    auth: persistReducer(persistConfig, reducers.auth),
+})
+
+export type State = typeof rootReducer
+export type RootState = ReturnType<State>
+
+const bindMiddleware = (middleware: Middleware[]) => {
     if (process.env.NODE_ENV !== 'production') {
         const {composeWithDevTools} = require('redux-devtools-extension');
         return composeWithDevTools(applyMiddleware(...middleware));
@@ -20,20 +26,22 @@ const bindMiddleware = (middleware) => {
     return applyMiddleware(...middleware);
 };
 
-function configureStore(initialState = {}) {
+const configureStore = (initialState = {}) => {
     const store = createStore(
-        combineReducers({
-            auth: persistReducer(persistConfig, rootReducer.auth),
-        }),
+        rootReducer,
         initialState,
         bindMiddleware([sagaMiddleware])
     );
     let persistor = persistStore(store);
 
+
+    // @ts-ignore
     store.runSagaTask = () => {
+        // @ts-ignore
         store.sagaTask = sagaMiddleware.run(rootSaga);
     };
 
+    // @ts-ignore
     store.runSagaTask();
     return {
         store,
