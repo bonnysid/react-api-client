@@ -1,52 +1,44 @@
-import {createStore, applyMiddleware, combineReducers, Middleware} from 'redux';
+import {combineReducers, configureStore, getDefaultMiddleware} from "@reduxjs/toolkit";
 import createSagaMiddleware from 'redux-saga';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import reducers from '../store/reducers/index';
-import rootSaga from '../store/sagas/index';
+import AuthReducer from '../store/reducers/auth';
+import AuthSaga from '../store/sagas/index'
 
-const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
     key: 'root',
     storage,
 };
 
 const rootReducer = combineReducers({
-    auth: persistReducer(persistConfig, reducers.auth),
+    auth: persistReducer(persistConfig, AuthReducer),
 })
 
 export type State = typeof rootReducer
 export type RootState = ReturnType<State>
 
-const bindMiddleware = (middleware: Middleware[]) => {
-    if (process.env.NODE_ENV !== 'production') {
-        const {composeWithDevTools} = require('redux-devtools-extension');
-        return composeWithDevTools(applyMiddleware(...middleware));
-    }
-    return applyMiddleware(...middleware);
+export const configureAppStore = () => {
+    const sagaMiddleware = createSagaMiddleware();
+
+    const middlewares = [sagaMiddleware];
+
+    const middleware = [
+        ...getDefaultMiddleware({ thunk: false }),
+        ...middlewares,
+    ];
+
+    const store = configureStore({
+        reducer: rootReducer,
+        middleware: middleware,
+    });
+
+    sagaMiddleware.run(AuthSaga);
+
+    return store;
 };
 
-const configureStore = (initialState = {}) => {
-    const store = createStore(
-        rootReducer,
-        initialState,
-        bindMiddleware([sagaMiddleware])
-    );
-    let persistor = persistStore(store);
+export const store = configureAppStore()
+
+export const persistor = persistStore(store);
 
 
-    // @ts-ignore
-    store.runSagaTask = () => {
-        // @ts-ignore
-        store.sagaTask = sagaMiddleware.run(rootSaga);
-    };
-
-    // @ts-ignore
-    store.runSagaTask();
-    return {
-        store,
-        persistor,
-    };
-}
-
-export default configureStore;

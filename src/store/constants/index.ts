@@ -1,11 +1,11 @@
-import keyMirror from 'fbjs/lib/keyMirror';
 
-export const ActionTypes = keyMirror({
-  AUTHENTICATE: undefined,
-  AUTHENTICATE_CHECK: undefined,
-  AUTHENTICATE_SUCCESS: undefined,
-  AUTHENTICATE_FAILURE: undefined,
-  LOGOUT: undefined,
-  LOGOUT_SUCCESS: undefined,
-  LOGOUT_FAILURE: undefined,
-});
+export enum ActionTypes {
+    AUTHENTICATE = 'AUTHENTICATE',
+    AUTHENTICATE_CHECK = 'AUTHENTICATE_CHECK',
+    AUTHENTICATE_SUCCESS = 'AUTHENTICATE_SUCCESS',
+    AUTHENTICATE_FAILURE = 'AUTHENTICATE_FAILURE',
+    LOGOUT = 'LOGOUT',
+    LOGOUT_SUCCESS = 'LOGOUT_SUCCESS',
+    LOGOUT_FAILURE = 'LOGOUT_FAILURE',
+}
+

@@ -1,1 +1,2 @@
-export * from 'src/store/actions/auth';
+import * as AuthActions from './auth';
+export default {...AuthActions}
