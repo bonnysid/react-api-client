@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import s from './LoginPage.module.css';
 import {Form, Field} from "react-final-form";
 import {useActions} from "../../hooks/useActions";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {IAuthPayload} from "../../types/types";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
 
 function LoginPage() {
     const {authenticate} = useActions()
@@ -33,12 +35,12 @@ function LoginPage() {
                 onSubmit={onSubmit}
                 render={({handleSubmit}) => (
                     <form className={s.form} onSubmit={handleSubmit}>
-                        <Field name={'login'} type={'text'} component='input' placeholder="Логин"/>
-                        <Field name={'sublogin'} type={'text'} component='input' placeholder="Сублогин"/>
-                        <Field name={'password'} type={'password'} component='input' placeholder="Пароль"/>
-                        <button type="submit">
+                        <Field name={'login'} type={'text'} render={(props) => <Input name={'Логин'} placeholder={'Логин'} {...props}/>}/>
+                        <Field name={'sublogin'} type={'text'} render={(props) => <Input name={'Сублогин'} placeholder={'Сублогин'} {...props}/>}/>
+                        <Field name={'password'} type={'password'}  render={(props) => <Input name={'Пароль'} placeholder={'Пароль'} {...props}/>}/>
+                        <Button type="submit">
                             Отправить
-                        </button>
+                        </Button>
                     </form>
                 )}/>
 

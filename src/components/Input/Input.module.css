@@ -1,0 +1,15 @@
+.input {
+    width: 460px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 10px 5px;
+    font-family: SF Pro Text, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
