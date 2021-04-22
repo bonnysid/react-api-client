@@ -7,6 +7,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {IAuthPayload} from "../../types/types";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
+import Logo from "../../components/Logo/Logo";
 
 function LoginPage() {
     const {authenticate} = useActions()
@@ -30,7 +31,7 @@ function LoginPage() {
 
     return (
         <div className={s.wrapper}>
-            <img className={s.logoStyled} src="/icons/logo.svg" alt="logo"/>
+            <Logo className={s.logo}/>
             <Form
                 onSubmit={onSubmit}
                 render={({handleSubmit}) => (
