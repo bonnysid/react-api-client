@@ -1,5 +1,5 @@
 import React from 'react';
-import icons from '../../../assets/img/icons.svg';
+import icons from '../../assets/icons/icons.svg';
 
 interface SvgIconProps {
     width?: string,

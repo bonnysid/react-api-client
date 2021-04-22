@@ -13,10 +13,28 @@
     align-items: center;
 }
 
+.logoutBtn {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 20px;
+    background: none;
+    margin: 0 30px;
+}
+
+.logoutBtn span{
+    margin-right: 11px;
+}
+
+.loginInfo {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
 .title {
-    font-family: SF Pro Text, sans-serif;
-    font-style: normal;
-    font-weight: normal;
     font-size: 20px;
     line-height: 30px;
     display: flex;

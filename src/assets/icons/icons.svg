@@ -1,0 +1,26 @@
+<svg width="0" height="0" class="hidden">
+    <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="format">
+        <path d="M21 10H7m4-4H3m9 8H7m0 4H3" opacity=".8" stroke="#0D0D0D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </symbol>
+    <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" id="full-screen">
+        <path d="M6 1H3a2 2 0 00-2 2v3m18 0V3a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M1 14v3a2 2 0 002 2h3" stroke="#0D0D0D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </symbol>
+    <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="logout">
+        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4m7 14l5-5-5-5m5 5H9" opacity=".8" stroke="#0D0D0D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </symbol>
+    <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" id="cross">
+        <path d="M1 1l18 18m0-18L1 19" stroke="#0D0D0D" stroke-width="2" stroke-linecap="round"></path>
+    </symbol>
+    <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 18" id="dots">
+        <g clip-path="url(#clip0)" fill="#000" fill-opacity=".2">
+            <circle cx="3" cy="2" r="2"></circle>
+            <circle cx="3" cy="9" r="2"></circle>
+            <circle cx="3" cy="16" r="2"></circle>
+        </g>
+        <defs>
+            <clipPath id="clip0">
+                <path fill="#fff" d="M0 0h6v18H0z"></path>
+            </clipPath>
+        </defs>
+    </symbol>
+</svg>
