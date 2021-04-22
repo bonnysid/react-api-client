@@ -16,6 +16,10 @@ body {
   color: #0D0D0D;
 }
 
+button {
+  background: none;
+}
+
 nav ul{
   margin: 0;
   padding: 0;
