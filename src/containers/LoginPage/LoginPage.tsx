@@ -30,7 +30,7 @@ function LoginPage() {
 
     return (
         <div className={s.wrapper}>
-            <img className={s.logoStyled} src="/icons/logo.svg" alt=""/>
+            <img className={s.logoStyled} src="/icons/logo.svg" alt="logo"/>
             <Form
                 onSubmit={onSubmit}
                 render={({handleSubmit}) => (
