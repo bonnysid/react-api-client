@@ -43,6 +43,37 @@ nav ul{
 
 .bg-blue {
   background: #0055FB;
+
+}
+.jsoneditor-menu {
+ display: none;
+}
+
+.jsoneditor-outer {
+  width: 700px;
+
+  background: #FFFFFF;
+  /* Borders (elements) */
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.jsoneditor div.jsoneditor-outer.has-main-menu-bar {
+  margin: 0;
+  padding: 10px;
+}
+
+.jsoneditor-outer {
+  border: none;
+}
+
+div.jsoneditor {
+  border: none;
+}
+
+.has-main-menu-bar {
+  margin: 0;
 }
 
 .white {

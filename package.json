@@ -8,11 +8,13 @@
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.22",
+    "@types/jsoneditor": "^8.6.0",
     "@types/node": "^12.20.10",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/redux-saga": "^0.10.5",
     "add": "^2.0.6",
+    "brace": "^0.11.1",
     "fbjs": "^3.0.0",
     "final-form": "^4.20.2",
     "jsoneditor": "^9.4.0",
@@ -58,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jsoneditor-react": "^3.1.1",
     "@types/fbjs": "^3.0.0",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-actions": "^2.6.1"
