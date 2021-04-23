@@ -20,7 +20,6 @@ const authSlice = createSlice({
             state.loading = true
         },
         authenticateSuccess: (state, action: PayloadAction<IAuthData>) => {
-            console.log(action)
             state.loading = false
             state.login = action.payload.login
             state.sessionKey = action.payload.session

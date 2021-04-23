@@ -9,6 +9,7 @@ body {
   font-family: SF Pro Text, sans-serif;
   font-style: normal;
   font-weight: normal;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #E5E5E5;
@@ -30,6 +31,22 @@ nav ul{
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.bg-red {
+  background: #CF2C00;
+}
+
+.bg-green {
+  background: #30B800;
+}
+
+.bg-blue {
+  background: #0055FB;
+}
+
+.white {
+  color: #FFFFFF;
 }
 
 code {

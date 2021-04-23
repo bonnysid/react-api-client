@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import AuthReducer from '../store/reducers/auth';
+import ConsoleReducer from '../store/reducers/console'
 import AuthSaga from '../store/sagas/index'
 
 const persistConfig = {
@@ -10,8 +11,11 @@ const persistConfig = {
     storage,
 };
 
+storage.removeItem('')
+
 const rootReducer = combineReducers({
     auth: persistReducer(persistConfig, AuthReducer),
+    console: persistReducer(persistConfig, ConsoleReducer)
 })
 
 export type State = typeof rootReducer

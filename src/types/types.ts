@@ -11,3 +11,14 @@ export interface IAuthPayload {
     password: string
     sublogin: string
 }
+
+export interface ISendsayQuery {
+    id: string | number
+    action: string
+    content: string
+    isSuccess: boolean
+}
+
+export type ResponseData = {
+    data: any
+}
