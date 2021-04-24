@@ -4,7 +4,7 @@ import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import AuthReducer from '../store/reducers/auth';
 import ConsoleReducer from '../store/reducers/console'
-import AuthSaga from '../store/sagas/index'
+import AuthSaga from './sagas'
 
 const persistConfig = {
     key: 'root',

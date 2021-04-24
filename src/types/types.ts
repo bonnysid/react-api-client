@@ -12,7 +12,11 @@ export interface IAuthPayload {
     sublogin: string
 }
 
-export interface ISendsayQuery {
+export interface IConsolePayload {
+    query: QuerySendsay
+}
+
+export interface IHistoryItem {
     id: string | number
     action: string
     content: string
@@ -21,4 +25,9 @@ export interface ISendsayQuery {
 
 export type ResponseData = {
     data: any
+}
+
+export type QuerySendsay = {
+    action: string
+    [key:string]: any
 }

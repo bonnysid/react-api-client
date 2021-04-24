@@ -1,10 +1,10 @@
 import React, {FC, useState} from 'react'
-import {ISendsayQuery} from "../../../types/types";
+import {IHistoryItem} from "../../../types/types";
 import SvgIcon from "../../../components/SvgIcon/SvgIcon";
 import s from './RequestHistoryItem.module.css';
 
 export interface RequestHistoryItemProps {
-    item: ISendsayQuery
+    item: IHistoryItem
 }
 
 const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item}) => {

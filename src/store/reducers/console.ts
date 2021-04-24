@@ -1,11 +1,11 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {ISendsayQuery, ResponseData} from "../../types/types";
+import {IHistoryItem, ResponseData} from "../../types/types";
 
 export const initialState = {
     loading: false,
     history: {
         size: 15,
-        items: [{action: 'sys.get', content: '{"action" : "sys.get"}', id: Date.now(), isSuccess: true}] as ISendsayQuery[]
+        items: [{action: 'sys.get', content: '{"action" : "sys.get"}', id: Date.now(), isSuccess: true}] as IHistoryItem[]
     },
     response: null as any
 }
@@ -16,7 +16,7 @@ const consoleSlice = createSlice({
     name: 'console',
     initialState,
     reducers: {
-        addQueryToHistory: (state: Draft<ConsoleState>, action: PayloadAction<ISendsayQuery>) => {
+        addQueryToHistory: (state: Draft<ConsoleState>, action: PayloadAction<IHistoryItem>) => {
             state.history.items.push(action.payload)
         },
         request: (state: Draft<ConsoleState>) => {

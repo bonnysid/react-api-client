@@ -5,11 +5,23 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import Button from "../../components/Button/Button";
 import GithubLink from "../../components/GithubLink/GithubLink";
 import SvgIcon from "../../components/SvgIcon/SvgIcon";
+import {useActions} from "../../hooks/useActions";
+import {QuerySendsay} from "../../types/types";
 
 const QueryResponseBlock: FC = (props) => {
-    const [query, setQuery] = useState({})
+    const [query, setQuery] = useState<QuerySendsay>({action: 'get'})
     const {response} = useTypedSelector(state => state.console)
+    const {addQueryToHistory} = useActions()
 
+    const handleSendClick = () => {
+        addQueryToHistory(query)
+    }
+
+    const handleFormatClick = () => {
+        console.log(query)
+        setQuery(prevState => prevState)
+    }
+console.log('rerender')
     return (
         <>
             <main className={s.container}>
@@ -18,7 +30,10 @@ const QueryResponseBlock: FC = (props) => {
                     <Editor
                         mode={'code'}
                         value={query}
-                        onChange={(data: Object) => setQuery(data)}
+                        onChange={(data: QuerySendsay) => {
+                            console.log(data)
+                            setQuery(data)
+                        }}
                         navigationBar={false}
                         search={false}
                         statusBar={false}
@@ -39,7 +54,7 @@ const QueryResponseBlock: FC = (props) => {
             <footer className={s.footer}>
                 <Button>Отправить</Button>
                 <GithubLink username={'bonnysid'}/>
-                <button className={s.formatBtn}>
+                <button onClick={handleFormatClick} className={s.formatBtn}>
                     <SvgIcon width={'24px'} height={'24px'} fillColor={'#0d0d0d'} urlId={'format'}/>
                     <span className={s.formatText}>Форматировать</span>
                 </button>
