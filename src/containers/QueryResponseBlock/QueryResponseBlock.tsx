@@ -9,19 +9,18 @@ import {useActions} from "../../hooks/useActions";
 import {QuerySendsay} from "../../types/types";
 
 const QueryResponseBlock: FC = (props) => {
-    const [query, setQuery] = useState<QuerySendsay>({action: 'get'})
+    const [query, setQuery] = useState<QuerySendsay>({action: 'pong'})
     const {response} = useTypedSelector(state => state.console)
-    const {addQueryToHistory} = useActions()
+    const {request} = useActions()
 
     const handleSendClick = () => {
-        addQueryToHistory(query)
+        request({query})
     }
 
     const handleFormatClick = () => {
-        console.log(query)
         setQuery(prevState => prevState)
     }
-console.log('rerender')
+    console.log(response)
     return (
         <>
             <main className={s.container}>
@@ -31,7 +30,6 @@ console.log('rerender')
                         mode={'code'}
                         value={query}
                         onChange={(data: QuerySendsay) => {
-                            console.log(data)
                             setQuery(data)
                         }}
                         navigationBar={false}
@@ -41,18 +39,13 @@ console.log('rerender')
                 </div>
                 <div className={s.item}>
                     <span className={s.title}>Ответ:</span>
-                    <Editor
-                        mode={'code'}
-                        value={response}
-                        onChange={() => {}}
-                        navigationBar={false}
-                        search={false}
-                        statusBar={false}
-                    />
+                    <div className={s.outer}>
+                        <textarea className={s.response} value={JSON.stringify(response, null, 4)} disabled={true}/>
+                    </div>
                 </div>
             </main>
             <footer className={s.footer}>
-                <Button>Отправить</Button>
+                <Button onClick={handleSendClick}>Отправить</Button>
                 <GithubLink username={'bonnysid'}/>
                 <button onClick={handleFormatClick} className={s.formatBtn}>
                     <SvgIcon width={'24px'} height={'24px'} fillColor={'#0d0d0d'} urlId={'format'}/>

@@ -2,6 +2,7 @@ import React, {FC, useState} from 'react'
 import {IHistoryItem} from "../../../types/types";
 import SvgIcon from "../../../components/SvgIcon/SvgIcon";
 import s from './RequestHistoryItem.module.css';
+import {useActions} from "../../../hooks/useActions";
 
 export interface RequestHistoryItemProps {
     item: IHistoryItem
@@ -9,6 +10,9 @@ export interface RequestHistoryItemProps {
 
 const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item}) => {
     const [isOpenModal, setIsOpenModal] = useState(false)
+    const {removeQueryFromHistory} = useActions()
+
+    const deleteQuery = () => removeQueryFromHistory(item.id)
 
     const toggleModal = () => setIsOpenModal(prevState => !prevState)
 
@@ -26,7 +30,7 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item}) => {
                     <button className={`${s.modal__btn} bg-blue-hover`}>Скопировать</button>
                 </div>
                 <div className={s.modal__block}>
-                    <button className={`${s.modal__btn} bg-red-hover`}>Удалить</button>
+                    <button onClick={deleteQuery} className={`${s.modal__btn} bg-red-hover`}>Удалить</button>
                 </div>
             </div>}
         </div>

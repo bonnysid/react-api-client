@@ -1,15 +1,16 @@
 
 export enum ActionTypes {
-    AUTHENTICATE = 'AUTHENTICATE',
-    AUTHENTICATE_CHECK = 'AUTHENTICATE_CHECK',
-    AUTHENTICATE_SUCCESS = 'AUTHENTICATE_SUCCESS',
-    AUTHENTICATE_FAILURE = 'AUTHENTICATE_FAILURE',
-    LOGOUT = 'LOGOUT',
-    LOGOUT_SUCCESS = 'LOGOUT_SUCCESS',
-    LOGOUT_FAILURE = 'LOGOUT_FAILURE',
-    REQUEST = 'REQUEST',
-    REQUEST_SUCCESS = 'REQUEST_SUCCESS',
-    REQUEST_FAILURE = 'REQUEST_FAILURE',
-    ADD_QUERY_HISTORY = 'ADD_QUERY_HISTORY'
+    AUTHENTICATE = 'auth/authenticate',
+    AUTHENTICATE_CHECK = 'auth/authenticateCheck',
+    AUTHENTICATE_SUCCESS = 'auth/authenticateSuccess',
+    AUTHENTICATE_FAILURE = 'auth/authenticateFailure',
+    LOGOUT = 'auth/logout',
+    LOGOUT_SUCCESS = 'auth/logoutSuccess',
+    LOGOUT_FAILURE = 'auth/logoutFailure',
+    REQUEST = 'console/request',
+    REQUEST_SUCCESS = 'console/requestSuccess',
+    REQUEST_FAILURE = 'console/requestFailure',
+    ADD_QUERY_HISTORY = 'console/addQueryToHistory',
+    REMOVE_QUERY_HISTORY = 'console/removeQueryFromHistory'
 }
 

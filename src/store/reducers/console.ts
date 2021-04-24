@@ -5,7 +5,7 @@ export const initialState = {
     loading: false,
     history: {
         size: 15,
-        items: [{action: 'sys.get', content: '{"action" : "sys.get"}', id: Date.now(), isSuccess: true}] as IHistoryItem[]
+        items: [{action: 'sys.get', content: {action: 'sys.get'}, id: Date.now(), isSuccess: true}] as IHistoryItem[]
     },
     response: null as any
 }
@@ -19,14 +19,19 @@ const consoleSlice = createSlice({
         addQueryToHistory: (state: Draft<ConsoleState>, action: PayloadAction<IHistoryItem>) => {
             state.history.items.push(action.payload)
         },
+        removeQueryFromHistory: (state: Draft<ConsoleState>, action: PayloadAction<{id: number}>) => {
+            state.history.items = state.history.items.filter(item => item.id !== action.payload.id)
+        },
         request: (state: Draft<ConsoleState>) => {
             state.loading = true
         },
         requestSuccess: (state: Draft<ConsoleState>, action: PayloadAction<ResponseData>) => {
+            console.log(action)
             state.loading = false
-            state.response = action.payload.data
+            state.response = action.payload
         },
         requestFailure: (state: Draft<ConsoleState>, action: PayloadAction<ResponseData>) => {
+            console.log(action)
             state.loading = false
             state.response = action.payload.data
         }
@@ -34,4 +39,4 @@ const consoleSlice = createSlice({
 })
 
 export default consoleSlice.reducer
-export const {addQueryToHistory, request, requestFailure, requestSuccess} = consoleSlice.actions
+export const {addQueryToHistory, request, requestFailure, requestSuccess, removeQueryFromHistory} = consoleSlice.actions
