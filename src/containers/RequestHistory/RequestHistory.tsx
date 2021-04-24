@@ -7,7 +7,7 @@ import RequestHistoryItem from "./RequestHistoryItem/RequestHistoryItem";
 const RequestHistory: FC = () => {
     const {history, loading, response} = useTypedSelector(state => state.console)
 
-    const historyElements = history.items.map(item => <RequestHistoryItem key={item.id} item={item}/>)
+    const historyElements = [...history.items].reverse().map(item => <RequestHistoryItem key={item.id} item={item}/>)
 
     return (
         <div className={s.container}>

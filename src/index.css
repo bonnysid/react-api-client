@@ -37,11 +37,17 @@ nav ul{
   background: #CF2C00;
 }
 
+.bg-red-hover:hover {
+  color: #FFFFFF;
+  background: #CF2C00;
+}
+
 .bg-green {
   background: #30B800;
 }
 
-.bg-blue {
+.bg-blue-hover:hover {
+  color: #FFFFFF;
   background: #0055FB;
 
 }

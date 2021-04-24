@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: auto auto;
     grid-gap: 10px;
     width: 100%;
     height: 100%;
@@ -18,6 +18,25 @@
 .item div{
     order: 2;
     flex: 1 0 auto;
+}
+
+.formatBtn {
+    display: flex;
+    align-items: center;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    background: #FFFFFF;
+    padding: 0 15px;
+}
+
+.formatText {
+    margin-left: 8px;
 }
 
 .title {

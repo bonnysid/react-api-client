@@ -23,10 +23,10 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item}) => {
             <div className={s.modal}>
                 <div className={s.modal__block}>
                     <button className={`${s.modal__btn}`}>Выполнить</button>
-                    <button className={`${s.modal__btn} bg-blue white`}>Скопировать</button>
+                    <button className={`${s.modal__btn} bg-blue-hover`}>Скопировать</button>
                 </div>
                 <div className={s.modal__block}>
-                    <button className={`${s.modal__btn} bg-red white`}>Удалить</button>
+                    <button className={`${s.modal__btn} bg-red-hover`}>Удалить</button>
                 </div>
             </div>}
         </div>
