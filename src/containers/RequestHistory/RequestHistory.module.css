@@ -18,6 +18,14 @@
     padding: 13px;
     border-left: 1px solid rgba(0, 0, 0, 0.2);
     box-shadow: -15px 0 25px #f6f6f6;
+    background: #f6f6f6;
+}
+
+.deleteBtn:before {
+    content: '';
+    height: 100%;
+    width: 15px;
+    background: linear-gradient(269.93deg, #F6F6F6 0.06%, rgba(246, 246, 246, 0) 99.93%);
 }
 
 .items {

@@ -34,6 +34,8 @@ const authSlice = createSlice({
         logout: state => {
             state.loading = false
             state.sessionKey = null
+            state.login = null
+            state.sublogin = null
         }
     }
 })

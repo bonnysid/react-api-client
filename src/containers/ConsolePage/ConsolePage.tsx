@@ -6,21 +6,32 @@ import RequestHistory from "../RequestHistory/RequestHistory";
 import QueryResponseBlock from "../QueryResponseBlock/QueryResponseBlock";
 import {useActions} from "../../hooks/useActions";
 import { Redirect } from "react-router-dom";
+import {QuerySendsay} from "../../types/types";
 
 const ConsolePage = () => {
+    const [query, setQuery] = useState<QuerySendsay>({action: 'pong'})
     const {login, sublogin} = useTypedSelector(state => state.auth)
-    const {authenticateCheck} = useActions()
+    const {authenticateCheck, authenticateFailure, clearResponse} = useActions()
 
     useEffect(() => {
+        clearResponse()
         authenticateCheck()
     },[])
+
+
+    const execQuery = (value: QuerySendsay) => {
+        clearResponse()
+        setQuery(value)
+        // console.log(query)
+        // handleSendClick()
+    }
 
     if(!login) return <Redirect to={'/'}/>
 
     return <div className={s.container}>
-        <Header login={login!} sublogin={sublogin}/>
-        <RequestHistory/>
-        <QueryResponseBlock/>
+        <Header login={login!} sublogin={sublogin} logout={authenticateFailure}/>
+        <RequestHistory execQuery={execQuery}/>
+        <QueryResponseBlock query={query} setQuery={setQuery}/>
     </div>
 }
 

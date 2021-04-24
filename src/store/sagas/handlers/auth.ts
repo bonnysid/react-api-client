@@ -25,6 +25,6 @@ export function* handleRequestLogin(action: {type: ActionTypes.AUTHENTICATE, pay
 }
 
 export function* handleLogout() {
-    yield put(authenticateFailure());
+    yield put(logout());
     document.cookie = '';
 }

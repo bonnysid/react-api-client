@@ -19,11 +19,17 @@ const consoleSlice = createSlice({
         addQueryToHistory: (state: Draft<ConsoleState>, action: PayloadAction<IHistoryItem>) => {
             state.history.items.push(action.payload)
         },
+        clearAllQueries: (state:Draft<ConsoleState>) => {
+            state.history.items = []
+        },
         removeQueryFromHistory: (state: Draft<ConsoleState>, action: PayloadAction<{id: number}>) => {
             state.history.items = state.history.items.filter(item => item.id !== action.payload.id)
         },
         request: (state: Draft<ConsoleState>, payload:PayloadAction<{query: QuerySendsay}>) => {
             state.loading = true
+        },
+        clearResponse: (state: Draft<ConsoleState>) => {
+          state.response = null
         },
         requestSuccess: (state: Draft<ConsoleState>, action: PayloadAction<ResponseData>) => {
             console.log(action)

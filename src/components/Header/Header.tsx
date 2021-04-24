@@ -5,11 +5,12 @@ import SvgIcon from "../SvgIcon/SvgIcon";
 import {Nullable} from "../../types/types";
 
 interface HeaderProps {
-    login: string,
+    login: string
     sublogin?: Nullable<string>
+    logout: () => void
 }
 
-const Header: FC<HeaderProps> = ({login, sublogin}) => {
+const Header: FC<HeaderProps> = ({login, sublogin, logout}) => {
     return (
         <header className={s.header}>
             <div className={s.block}>
@@ -21,7 +22,7 @@ const Header: FC<HeaderProps> = ({login, sublogin}) => {
                     <span>{login}</span>
                     {sublogin && <span><span className={s.dots}>:</span>{sublogin}</span>}
                 </div>
-                <button className={s.logoutBtn}>
+                <button onClick={logout} className={s.logoutBtn}>
                     <span>Выйти</span>
                     <SvgIcon width={'24px'} height={'24px'} fillColor={'#0D0D0D'} urlId={'logout'}/>
                 </button>

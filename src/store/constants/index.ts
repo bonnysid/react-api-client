@@ -11,6 +11,7 @@ export enum ActionTypes {
     REQUEST_SUCCESS = 'console/requestSuccess',
     REQUEST_FAILURE = 'console/requestFailure',
     ADD_QUERY_HISTORY = 'console/addQueryToHistory',
-    REMOVE_QUERY_HISTORY = 'console/removeQueryFromHistory'
+    REMOVE_QUERY_HISTORY = 'console/removeQueryFromHistory',
+    CLEAR_ALL_QUERIES = 'console/clearAllQueries',
 }
 

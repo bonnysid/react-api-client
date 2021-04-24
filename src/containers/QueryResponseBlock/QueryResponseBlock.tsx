@@ -8,8 +8,13 @@ import SvgIcon from "../../components/SvgIcon/SvgIcon";
 import {useActions} from "../../hooks/useActions";
 import {QuerySendsay} from "../../types/types";
 
-const QueryResponseBlock: FC = (props) => {
-    const [query, setQuery] = useState<QuerySendsay>({action: 'pong'})
+export interface QueryResponseBlockProps {
+    query: QuerySendsay,
+    setQuery: React.Dispatch<React.SetStateAction<QuerySendsay>>
+}
+
+const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
+
     const {response} = useTypedSelector(state => state.console)
     const {request} = useActions()
 
@@ -20,6 +25,7 @@ const QueryResponseBlock: FC = (props) => {
     const handleFormatClick = () => {
         setQuery(prevState => prevState)
     }
+
 
     return (
         <>
@@ -40,7 +46,10 @@ const QueryResponseBlock: FC = (props) => {
                 <div className={s.item}>
                     <span className={s.title}>Ответ:</span>
                     <div className={s.outer}>
-                        <textarea className={s.response} value={JSON.stringify(response, null, 4)} disabled={true}/>
+                        <textarea
+                            className={s.response}
+                            value={response && JSON.stringify(response, null, 4)}
+                            disabled={true}/>
                     </div>
                 </div>
             </main>
