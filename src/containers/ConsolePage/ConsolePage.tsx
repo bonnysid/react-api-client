@@ -11,7 +11,7 @@ const ConsolePage = () => {
     return <div>
         <Header login={login!} sublogin={sublogin}/>
         <RequestHistory/>
-        <QueryResponseBlock/>
+        <QueryResponseBlock />
     </div>
 }
 

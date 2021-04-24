@@ -65,11 +65,15 @@ nav ul{
 }
 
 .jsoneditor-outer {
-  border: none;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+
 }
 
 div.jsoneditor {
   border: none;
+  height: 100%;
 }
 
 .has-main-menu-bar {
