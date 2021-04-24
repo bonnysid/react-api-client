@@ -1,4 +1,4 @@
-import React, {FC, useRef} from "react";
+import React, {FC, useEffect, useRef} from "react";
 import JSONEditor from "jsoneditor";
 export type modes = 'tree' | 'view' | 'form' | 'code' | 'text'
 
@@ -29,11 +29,19 @@ export interface EditorProps {
 }
 
 const Editor: FC<EditorProps> = (props) => {
-    const ref = useRef(null)
-    const jsoneditor = new JSONEditor(ref.current!, {
+    const containerRef = useRef()
+    const editorRef = useRef()
 
-    })
+    useEffect(() => {
+        editorRef.current = new JSONEditor(containerRef.current!, {})
+        return () => editorRef.current!.destroy()
+    },[])
+
+    useEffect(() => {
+        editorRef.current!.update(props.value)
+    }, [props.value])
+
     return (
-        <div ref={ref}></div>
+        <div ref={containerRef}></div>
     )
 }
