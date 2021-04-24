@@ -32,7 +32,6 @@ const consoleSlice = createSlice({
           state.response = null
         },
         requestSuccess: (state: Draft<ConsoleState>, action: PayloadAction<ResponseData>) => {
-            console.log(action)
             state.loading = false
             state.response = action.payload
         },

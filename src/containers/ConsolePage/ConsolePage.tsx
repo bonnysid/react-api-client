@@ -11,7 +11,7 @@ import {QuerySendsay} from "../../types/types";
 const ConsolePage = () => {
     const [query, setQuery] = useState<QuerySendsay>({action: 'pong'})
     const {login, sublogin} = useTypedSelector(state => state.auth)
-    const {authenticateCheck, authenticateFailure, clearResponse} = useActions()
+    const {authenticateCheck, authenticateFailure, clearResponse, request} = useActions()
 
     useEffect(() => {
         clearResponse()
@@ -22,8 +22,7 @@ const ConsolePage = () => {
     const execQuery = (value: QuerySendsay) => {
         clearResponse()
         setQuery(value)
-        // console.log(query)
-        // handleSendClick()
+        request({query: value})
     }
 
     if(!login) return <Redirect to={'/'}/>
