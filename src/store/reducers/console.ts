@@ -1,5 +1,5 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {IHistoryItem, ResponseData} from "../../types/types";
+import {IHistoryItem, QuerySendsay, ResponseData} from "../../types/types";
 
 export const initialState = {
     loading: false,
@@ -22,7 +22,7 @@ const consoleSlice = createSlice({
         removeQueryFromHistory: (state: Draft<ConsoleState>, action: PayloadAction<{id: number}>) => {
             state.history.items = state.history.items.filter(item => item.id !== action.payload.id)
         },
-        request: (state: Draft<ConsoleState>) => {
+        request: (state: Draft<ConsoleState>, payload:PayloadAction<{query: QuerySendsay}>) => {
             state.loading = true
         },
         requestSuccess: (state: Draft<ConsoleState>, action: PayloadAction<ResponseData>) => {
@@ -39,4 +39,4 @@ const consoleSlice = createSlice({
 })
 
 export default consoleSlice.reducer
-export const {addQueryToHistory, request, requestFailure, requestSuccess, removeQueryFromHistory} = consoleSlice.actions
+export const consoleActions = consoleSlice.actions

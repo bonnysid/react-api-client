@@ -12,7 +12,7 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item}) => {
     const [isOpenModal, setIsOpenModal] = useState(false)
     const {removeQueryFromHistory} = useActions()
 
-    const deleteQuery = () => removeQueryFromHistory(item.id)
+    const deleteQuery = () => removeQueryFromHistory({id: item.id})
 
     const toggleModal = () => setIsOpenModal(prevState => !prevState)
 

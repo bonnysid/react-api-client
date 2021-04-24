@@ -2,7 +2,9 @@ import {call, put} from "redux-saga/effects";
 import {requestSendsay} from "../requests/console";
 import {ActionTypes} from "../../constants";
 import {IConsolePayload} from "../../../types/types";
-import { addQueryToHistory, requestFailure, requestSuccess } from "../../reducers/console";
+import { consoleActions } from "../../reducers/console";
+
+const {addQueryToHistory, requestSuccess, requestFailure} = consoleActions
 
 export function* handleSendsayRequest(action: {type: ActionTypes.REQUEST, payload: IConsolePayload}): Generator<any, any, unknown> {
     let data: any;

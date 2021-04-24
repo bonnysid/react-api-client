@@ -20,7 +20,7 @@ const QueryResponseBlock: FC = (props) => {
     const handleFormatClick = () => {
         setQuery(prevState => prevState)
     }
-    console.log(response)
+
     return (
         <>
             <main className={s.container}>

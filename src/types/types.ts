@@ -17,7 +17,7 @@ export interface IConsolePayload {
 }
 
 export interface IHistoryItem {
-    id: string | number
+    id: number
     action: string
     content: QuerySendsay
     isSuccess: boolean

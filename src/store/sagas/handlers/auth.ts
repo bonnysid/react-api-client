@@ -3,7 +3,9 @@ import {IAuthData, IAuthPayload} from "../../../types/types";
 import {call, put} from "redux-saga/effects";
 import {requestLogin} from "../requests/auth";
 import api from "../../../helpers/sendsay";
-import {authenticateFailure, authenticateSuccess} from "../../reducers/auth";
+import {authActions} from "../../reducers/auth";
+
+const {authenticateSuccess, authenticateFailure, logout} = authActions
 
 export function* handleRequestLogin(action: {type: ActionTypes.AUTHENTICATE, payload: IAuthPayload }): Generator<IAuthData | any, any, unknown> {
     try {

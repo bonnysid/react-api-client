@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions';
-import {IAuthData, Nullable} from "../../types/types";
+import {IAuthData, IAuthPayload, Nullable} from "../../types/types";
 import {ActionTypes} from '../constants';
 import {createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -16,9 +16,10 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        authenticate: state => {
+        authenticate: (state, payload: PayloadAction<IAuthPayload>) => {
             state.loading = true
         },
+        authenticateCheck: () => {},
         authenticateSuccess: (state, action: PayloadAction<IAuthData>) => {
             state.loading = false
             state.login = action.payload.login
@@ -38,7 +39,7 @@ const authSlice = createSlice({
 })
 
 export default authSlice.reducer
-export const {authenticate, logout, authenticateFailure, authenticateSuccess} = authSlice.actions
+export const authActions = authSlice.actions
 // {
 //     auth: handleActions(
 //         {
