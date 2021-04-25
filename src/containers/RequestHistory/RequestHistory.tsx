@@ -5,7 +5,6 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import RequestHistoryItem from "./RequestHistoryItem/RequestHistoryItem";
 import {useActions} from "../../hooks/useActions";
 import {QuerySendsay} from "../../types/types";
-import ScrollMenu from "react-horizontal-scrolling-menu";
 import Slider from "../../components/Slider/Slider";
 
 export interface RequestHistoryProps {
@@ -24,7 +23,8 @@ const RequestHistory: FC<RequestHistoryProps> = ({execQuery}) => {
             <Slider>
                 {historyElements}
             </Slider>
-            <button onClick={clearAllQueries} className={s.deleteBtn}><SvgIcon className={s.icon} urlId={'cross'}/>
+            <button onClick={clearAllQueries} className={s.deleteBtn}>
+                <SvgIcon className={s.icon} urlId={'cross'}/>
             </button>
         </div>
     )
