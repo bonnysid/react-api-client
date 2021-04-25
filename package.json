@@ -18,11 +18,11 @@
     "fbjs": "^3.0.0",
     "final-form": "^4.20.2",
     "jsoneditor": "^9.4.0",
-    "jsoneditor-react": "^3.1.1",
     "re-resizable": "^6.9.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-final-form": "^6.5.3",
+    "react-full-screen": "^1.0.2",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -60,7 +60,6 @@
     ]
   },
   "devDependencies": {
-    "@types/jsoneditor-react": "^3.1.1",
     "@types/fbjs": "^3.0.0",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-actions": "^2.6.1"

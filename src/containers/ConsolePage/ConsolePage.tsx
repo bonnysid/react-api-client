@@ -5,11 +5,12 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import RequestHistory from "../RequestHistory/RequestHistory";
 import QueryResponseBlock from "../QueryResponseBlock/QueryResponseBlock";
 import {useActions} from "../../hooks/useActions";
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {QuerySendsay} from "../../types/types";
+import {FullScreen, useFullScreenHandle} from "react-full-screen";
 
 const ConsolePage = () => {
-    // const [query, setQuery] = useState<QuerySendsay>({action: 'pong'})
+    const fullscreenHandle = useFullScreenHandle()
     const [query, setQuery] = useState<QuerySendsay>({action: 'pong'})
     const {login, sublogin} = useTypedSelector(state => state.auth)
     const {authenticateCheck, authenticateFailure, clearResponse, request} = useActions()
@@ -17,8 +18,7 @@ const ConsolePage = () => {
     useEffect(() => {
         clearResponse()
         authenticateCheck()
-    },[])
-
+    }, [])
 
     const execQuery = (value: QuerySendsay) => {
         clearResponse()
@@ -26,13 +26,21 @@ const ConsolePage = () => {
         request({query: value})
     }
 
-    if(!login) return <Redirect to={'/'}/>
+    if (!login) return <Redirect to={'/'}/>
 
-    return <div className={s.container}>
-        <Header login={login!} sublogin={sublogin} logout={authenticateFailure}/>
-        <RequestHistory execQuery={execQuery}/>
-        <QueryResponseBlock query={query} setQuery={setQuery}/>
-    </div>
+    return (
+
+        <FullScreen handle={fullscreenHandle} className={s.container} onChange={(state) => console.log(state)}>
+            <Header
+                fullscreenHandle={fullscreenHandle}
+                login={login!}
+                sublogin={sublogin}
+                logout={authenticateFailure}
+            />
+            <RequestHistory execQuery={execQuery}/>
+            <QueryResponseBlock query={query} setQuery={setQuery}/>
+        </FullScreen>
+    )
 }
 
 export default ConsolePage

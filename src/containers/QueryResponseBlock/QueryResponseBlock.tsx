@@ -1,4 +1,4 @@
-import React, {FC, useRef, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 // import {JsonEditor as Editor} from 'jsoneditor-react'
 import Editor from '../Editor/Editor'
 import s from './QueryResponseBlock.module.css'
@@ -20,13 +20,13 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
     const {request} = useActions()
 
     const handleSendClick = () => {
+        console.log("REQUEST", query)
         request({query})
     }
 
     const handleFormatClick = () => {
         setQuery(JSON.parse(JSON.stringify(query, null, 2)))
     }
-
 
     return (
         <>
@@ -37,6 +37,7 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
                     mode={'code'}
                     value={query}
                     onChange={(data: QuerySendsay) => {
+                        console.log("QRB ON CHANGE",query,data)
                         setQuery(data)
                     }}
                     navigationBar={false}

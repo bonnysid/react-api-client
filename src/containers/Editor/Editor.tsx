@@ -3,6 +3,7 @@ import JSONEditor, {JSONEditorOptions} from "jsoneditor";
 import ace from 'brace'
 import 'jsoneditor/dist/jsoneditor.css';
 import {QuerySendsay} from "../../types/types";
+
 export type modes = 'tree' | 'view' | 'form' | 'code' | 'text'
 
 export interface EditorProps {
@@ -44,17 +45,20 @@ const Editor: FC<EditorProps> = (props) => {
 
         createEditor(props);
         return () => {
-                editorRef.current!.destroy()
+            editorRef.current!.destroy()
         }
     }, [])
 
     useEffect(() => {
-        editorRef.current!.update(props.value)
+        const currentJson = editorRef.current!.get()
+        if(JSON.stringify(props.value) !== '{}' && JSON.stringify(props.value) !== JSON.stringify(currentJson)) {
+            editorRef.current!.update(props.value)
+        }
     }, [props.value])
 
     // eslint-disable-next-line react/sort-comp
 
-    const createEditor = ({ value, onChange, tag, htmlElementProps, innerRef, ...rest } : EditorProps) => {
+    const createEditor = ({value, onChange, tag, htmlElementProps, innerRef, ...rest}: EditorProps) => {
         if (editorRef.current) {
             editorRef.current.destroy();
         }
@@ -67,6 +71,10 @@ const Editor: FC<EditorProps> = (props) => {
         editorRef.current.set(value);
     }
 
+    const getText = () => editorRef.current!.getText()
+
+    const updateText = (text: string) => editorRef.current!.updateText(text)
+
     const handleChange = () => {
         if (props.onChange) {
             try {
@@ -74,14 +82,17 @@ const Editor: FC<EditorProps> = (props) => {
                 if (text === '') {
                     props.onChange(null, '');
                 }
-
                 const currentJson = editorRef.current!.get();
+                props.onChange(currentJson, getText())
                 if (JSON.stringify(props.value) !== JSON.stringify(currentJson)) {
                     editorRef.current!.updateText(editorRef.current!.getText())
                     props.onChange(currentJson, editorRef.current!.getText());
                 }
+                if(getText() !== JSON.stringify(currentJson)) {
+                    updateText(getText())
+                }
             } catch (err) {
-                // console.log(err)
+                console.log(err)
             }
         }
     }

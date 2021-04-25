@@ -3,14 +3,16 @@ import Logo from "../Logo/Logo";
 import s from './Header.module.css'
 import SvgIcon from "../SvgIcon/SvgIcon";
 import {Nullable} from "../../types/types";
+import {FullScreenHandle} from "react-full-screen";
 
 interface HeaderProps {
+    fullscreenHandle: FullScreenHandle
     login: string
     sublogin?: Nullable<string>
     logout: () => void
 }
 
-const Header: FC<HeaderProps> = ({login, sublogin, logout}) => {
+const Header: FC<HeaderProps> = ({login, sublogin, logout, fullscreenHandle}) => {
     return (
         <header className={s.header}>
             <div className={s.block}>
@@ -26,7 +28,9 @@ const Header: FC<HeaderProps> = ({login, sublogin, logout}) => {
                     <span>Выйти</span>
                     <SvgIcon width={'24px'} height={'24px'} fillColor={'#0D0D0D'} urlId={'logout'}/>
                 </button>
-                <SvgIcon width={'18px'} height={'18px'} fillColor={'#0D0D0D'} urlId={'full-screen'}/>
+                <button onClick={fullscreenHandle.enter}>
+                    <SvgIcon width={'18px'} height={'18px'} fillColor={'#0D0D0D'} urlId={'full-screen'}/>
+                </button>
             </div>
         </header>
     )
