@@ -17,7 +17,6 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
 
     const {response} = useTypedSelector(state => state.console)
     const {request} = useActions()
-    const textarea = useRef(null)
 
     const handleSendClick = () => {
         request({query})

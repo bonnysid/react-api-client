@@ -1,12 +1,15 @@
 import React, {FC, useEffect, useRef} from "react";
-import JSONEditor from "jsoneditor";
+import JSONEditor, {JSONEditorOptions} from "jsoneditor";
+import ace from 'brace'
+import 'brace/theme/monokai'
+import 'brace/mode/json'
 export type modes = 'tree' | 'view' | 'form' | 'code' | 'text'
 
 export interface EditorProps {
 
     value: object | [] | string | boolean | number,
     mode?: modes
-    name: string,
+    name?: string,
     schema?: object,
     schemaRefs?: object,
     sortObjectKeys?: boolean,
@@ -29,11 +32,23 @@ export interface EditorProps {
 }
 
 const Editor: FC<EditorProps> = (props) => {
-    const containerRef = useRef()
-    const editorRef = useRef()
+    const containerRef = useRef<HTMLDivElement>(null)
+    const editorRef = useRef<JSONEditor>()
 
     useEffect(() => {
-        editorRef.current = new JSONEditor(containerRef.current!, {})
+        const options: JSONEditorOptions = {
+            autocomplete: undefined,
+            onChangeJSON: props.onChange,
+            mode: 'code',
+            enableSort: false,
+            enableTransform: false,
+            navigationBar: false,
+            mainMenuBar: false,
+            statusBar: false,
+            search: false,
+            ace: undefined
+        }
+        editorRef.current = new JSONEditor(containerRef.current!, options)
         return () => editorRef.current!.destroy()
     },[])
 
@@ -42,6 +57,8 @@ const Editor: FC<EditorProps> = (props) => {
     }, [props.value])
 
     return (
-        <div ref={containerRef}></div>
+        <div ref={containerRef}/>
     )
 }
+
+export default Editor

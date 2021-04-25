@@ -42,6 +42,10 @@ nav ul{
   background: #CF2C00;
 }
 
+.ace_gutter {
+  display: none;
+}
+
 .bg-green {
   background: #30B800;
 }
