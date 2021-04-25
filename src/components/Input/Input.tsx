@@ -11,7 +11,6 @@ export interface InputProps {
 
 const Input: FC<InputProps> = ({name, placeholder, meta, input}) => {
     const hasError = meta.touched && meta.error;
-    console.log(name)
     return (
         <div className={s.container}>
             {hasError && <span className={'error-text'}>{meta.error}</span>}

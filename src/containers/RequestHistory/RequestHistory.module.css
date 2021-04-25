@@ -37,4 +37,11 @@
 .items {
     display: flex;
     width: 100%;
+    clear: both;
+    overflow-x: visible;
+}
+
+.items::-webkit-scrollbar {
+    width: 0px;
+    height: 0;
 }

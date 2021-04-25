@@ -15,6 +15,7 @@ body {
   background: #E5E5E5;
   height: 100%;
   color: #0D0D0D;
+  overflow: hidden;
 }
 
 button {

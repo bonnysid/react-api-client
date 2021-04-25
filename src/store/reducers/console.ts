@@ -4,8 +4,26 @@ import {IHistoryItem, QuerySendsay, ResponseData} from "../../types/types";
 export const initialState = {
     loading: false,
     history: {
-        size: 15,
-        items: [{action: 'sys.get', content: {action: 'sys.get'}, id: Date.now(), isSuccess: true}] as IHistoryItem[]
+        size: 20,
+        items: [
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 1, isSuccess: true},
+            {action: 'sys.put', content: {action: 'sys.get'}, id: Date.now() + 2, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 3, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 4, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 5, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 6, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 7, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 8, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 9, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 10, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 11, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 12, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 13, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 14, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 15, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 16, isSuccess: true},
+            {action: 'sys.get', content: {action: 'sys.get'}, id: Date.now() + 17, isSuccess: true},
+            ] as IHistoryItem[]
     },
     response: null as any
 }
