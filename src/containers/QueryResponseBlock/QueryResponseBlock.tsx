@@ -37,7 +37,6 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
                     mode={'code'}
                     value={query}
                     onChange={(data: QuerySendsay) => {
-                        console.log(data)
                         setQuery(data)
                     }}
                     navigationBar={false}

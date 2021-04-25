@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom";
 import {QuerySendsay} from "../../types/types";
 
 const ConsolePage = () => {
+    // const [query, setQuery] = useState<QuerySendsay>({action: 'pong'})
     const [query, setQuery] = useState<QuerySendsay>({action: 'pong'})
     const {login, sublogin} = useTypedSelector(state => state.auth)
     const {authenticateCheck, authenticateFailure, clearResponse, request} = useActions()

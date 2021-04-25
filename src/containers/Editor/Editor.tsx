@@ -2,6 +2,7 @@ import React, {FC, useEffect, useRef} from "react";
 import JSONEditor, {JSONEditorOptions} from "jsoneditor";
 import ace from 'brace'
 import 'jsoneditor/dist/jsoneditor.css';
+import {QuerySendsay} from "../../types/types";
 export type modes = 'tree' | 'view' | 'form' | 'code' | 'text'
 
 export interface EditorProps {
@@ -12,7 +13,7 @@ export interface EditorProps {
     schema?: object,
     schemaRefs?: object,
     sortObjectKeys?: boolean,
-    onChange: (props?: any) => void,
+    onChange: (dataObj: any, dataStr: string) => void,
     onError?: (props?: any) => void,
     onModeChange?: (props?: any) => void,
     ace?: AceAjax.Ace,
@@ -48,7 +49,7 @@ const Editor: FC<EditorProps> = (props) => {
     }, [])
 
     useEffect(() => {
-        editorRef.current!.updateText(props.value.toString())
+        editorRef.current!.update(props.value)
     }, [props.value])
 
     // eslint-disable-next-line react/sort-comp
@@ -71,15 +72,16 @@ const Editor: FC<EditorProps> = (props) => {
             try {
                 const text = editorRef.current!.getText();
                 if (text === '') {
-                    props.onChange(null);
+                    props.onChange(null, '');
                 }
 
                 const currentJson = editorRef.current!.get();
-                if (props.value !== currentJson) {
-                    props.onChange(currentJson);
+                if (JSON.stringify(props.value) !== JSON.stringify(currentJson)) {
+                    editorRef.current!.updateText(editorRef.current!.getText())
+                    props.onChange(currentJson, editorRef.current!.getText());
                 }
             } catch (err) {
-                console.log(err)
+                // console.log(err)
             }
         }
     }
