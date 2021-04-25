@@ -1,5 +1,6 @@
 import React, {FC, useRef, useState} from "react";
-import {JsonEditor as Editor} from 'jsoneditor-react'
+// import {JsonEditor as Editor} from 'jsoneditor-react'
+import Editor from '../Editor/Editor'
 import s from './QueryResponseBlock.module.css'
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import Button from "../../components/Button/Button";
@@ -42,7 +43,7 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
                     navigationBar={false}
                     search={false}
                     statusBar={false}
-                    
+
 
             />
         </div>

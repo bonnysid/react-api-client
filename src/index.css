@@ -74,13 +74,6 @@ nav ul{
   padding: 10px;
 }
 
-.jsoneditor-outer {
-
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-
-}
-
 div.jsoneditor {
   border: none;
   height: 100%;
