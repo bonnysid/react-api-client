@@ -9,12 +9,14 @@ export type modes = 'tree' | 'view' | 'form' | 'code' | 'text'
 export interface EditorProps {
 
     value: object | [] | string | boolean | number,
+    formattedValue?: string,
     mode?: modes
     name?: string,
     schema?: object,
     schemaRefs?: object,
     sortObjectKeys?: boolean,
     onChange: (dataObj: any, dataStr: string) => void,
+    onFormat?: () => string,
     onError?: (props?: any) => void,
     onModeChange?: (props?: any) => void,
     ace?: AceAjax.Ace,
@@ -55,6 +57,10 @@ const Editor: FC<EditorProps> = (props) => {
             editorRef.current!.update(props.value)
         }
     }, [props.value])
+
+    useEffect(() => {
+        if(props.formattedValue) editorRef.current!.updateText(props.formattedValue)
+    }, [props.formattedValue])
 
     // eslint-disable-next-line react/sort-comp
 

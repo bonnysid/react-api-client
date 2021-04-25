@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useRef, useState} from "react";
-import {Resizable} from 're-resizable'
+// import {Resizable} from 're-resizable'
 import Editor from '../Editor/Editor'
 import s from './QueryResponseBlock.module.css'
 import {useTypedSelector} from "../../hooks/useTypedSelector";
@@ -17,15 +17,15 @@ export interface QueryResponseBlockProps {
 const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
 
     const {response, loading} = useTypedSelector(state => state.console)
+    const [formattedQuery, setFormattedQuery] = useState('')
     const {request} = useActions()
 
     const handleSendClick = () => {
-        console.log("REQUEST", query)
         request({query})
     }
 
     const handleFormatClick = () => {
-        setQuery(JSON.parse(JSON.stringify(query, null, 2)))
+        setFormattedQuery(JSON.stringify(query, null, 2))
     }
 
     return (
@@ -36,15 +36,11 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
                 <Editor
                     mode={'code'}
                     value={query}
-                    onChange={(data: QuerySendsay) => {
-                        console.log("QRB ON CHANGE",query,data)
-                        setQuery(data)
-                    }}
+                    onChange={(data: QuerySendsay) => setQuery(data)}
+                    formattedValue={formattedQuery}
                     navigationBar={false}
                     search={false}
                     statusBar={false}
-
-
             />
         </div>
         <div className={s.item}>
