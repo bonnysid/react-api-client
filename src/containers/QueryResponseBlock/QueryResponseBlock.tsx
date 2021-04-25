@@ -16,7 +16,7 @@ export interface QueryResponseBlockProps {
 
 const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
 
-    const {response} = useTypedSelector(state => state.console)
+    const {response, loading} = useTypedSelector(state => state.console)
     const {request} = useActions()
 
     const handleSendClick = () => {
@@ -61,7 +61,7 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
         <Button onClick={handleSendClick}>Отправить</Button>
         <GithubLink username={'bonnysid'}/>
         <button onClick={handleFormatClick} className={s.formatBtn}>
-            <SvgIcon width={'24px'} height={'24px'} fillColor={'#0d0d0d'} urlId={'format'}/>
+            <SvgIcon className={s.formatIcon} urlId={'format'}/>
             <span className={s.formatText}>Форматировать</span>
         </button>
     </footer>

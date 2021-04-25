@@ -25,6 +25,7 @@ const consoleSlice = createSlice({
             if(equalObj){
                 state.history.items = state.history.items.filter(item => item.id !== equalObj.id)
             }
+            if(state.history.items.length === state.history.size) state.history.items.splice(state.history.size-1, 1)
             state.history.items.push(action.payload)
         },
         clearAllQueries: (state:Draft<ConsoleState>) => {

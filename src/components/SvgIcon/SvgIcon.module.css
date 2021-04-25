@@ -1,0 +1,9 @@
+.icon {
+    width: 24px;
+    height: 24px;
+    stroke: #0D0D0D;
+}
+
+.icon:hover {
+    stroke: #0055FB;
+}

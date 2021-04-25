@@ -32,7 +32,7 @@
     height: 100%;
 }
 
-.item div{
+.item div {
     order: 2;
     flex: 1 0 auto;
 }
@@ -40,6 +40,25 @@
 .formatBtn {
     display: flex;
     align-items: center;
+    stroke: #0D0D0D;
+    padding: 6px 4px;
+}
+
+.formatBtn:hover {
+    stroke: #0055FB;
+    color: #0055FB;
+}
+
+.formatBtn:focus {
+    border: 2px solid rgba(69, 165, 255, 0.5);
+    border-radius: 7px;
+    stroke: #0055FB;
+    color: #0055FB;
+}
+
+.formatIcon {
+    width: 24px;
+    height: 24px;
 }
 
 .footer {

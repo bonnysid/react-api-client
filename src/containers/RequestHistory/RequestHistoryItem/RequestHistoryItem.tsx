@@ -28,23 +28,30 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
     }
 
     return (
-        <div className={s.container}>
-            <div className={`${s.status} ${item.isSuccess ? 'bg-green' : 'bg-red'}`}/>
-            <span className={s.action}>{item.action}</span>
-            <button className={s.toggleBtn} onClick={toggleModal}>
-                <SvgIcon width={'4px'} height={'18px'} fillColor={'rgba(0, 0, 0, 0.2)'} urlId={'dots'}/>
-            </button>
-            {isOpenModal &&
-            <div className={s.modal}>
-                <div className={s.modal__block}>
-                    <button onClick={invokeQuery} className={`${s.modal__btn}`}>Выполнить</button>
-                    <button onClick={copyQuery} className={`${s.modal__btn} bg-blue-hover`}>Скопировать</button>
+        <>
+            {isOpenModal && <aside onClick={toggleModal} className={s.aside}/>}
+            <div className={s.container}>
+                <div className={`${s.status} ${item.isSuccess ? 'bg-green' : 'bg-red'}`}/>
+                <span className={s.action}>{item.action}</span>
+                <button className={s.toggleBtn} onClick={toggleModal}>
+                    <SvgIcon className={s.icon} urlId={'dots'}/>
+                </button>
+                {isOpenModal &&
+
+                <div className={s.modal}>
+                    <div className={s.modal__block}>
+                        <button onClick={invokeQuery} className={`${s.modal__btn}`}>Выполнить</button>
+                        <button onClick={copyQuery} className={`${s.modal__btn} bg-blue-hover`}>Скопировать</button>
+                    </div>
+                    <div className={s.modal__block}>
+                        <button onClick={deleteQuery} className={`${s.modal__btn} bg-red-hover`}>Удалить</button>
+                    </div>
                 </div>
-                <div className={s.modal__block}>
-                    <button onClick={deleteQuery} className={`${s.modal__btn} bg-red-hover`}>Удалить</button>
-                </div>
-            </div>}
-        </div>
+
+                }
+            </div>
+        </>
+
     )
 }
 

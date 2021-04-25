@@ -8,6 +8,16 @@
     background: #F6F6F6;
 }
 
+.logoutIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.fullscreenIcon {
+    width: 18px;
+    height: 18px;
+}
+
 .block {
     display: flex;
     align-items: center;
@@ -20,6 +30,25 @@
     line-height: 20px;
     background: none;
     margin: 0 30px;
+    stroke: #0D0D0D;
+}
+
+.fullscreenBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    stroke: #0D0D0D;
+}
+
+.fullscreenBtn:hover {
+    stroke: #0055FB;
+}
+
+.fullscreenBtn:focus {
+    border: 2px solid rgba(69, 165, 255, 0.5);
+    border-radius: 7px;
+    stroke: #0055FB;
 }
 
 .logoutBtn span{
@@ -34,6 +63,16 @@
     border-radius: 5px;
     font-size: 16px;
     line-height: 20px;
+}
+
+.loginInfo:hover {
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.loginInfo:focus {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
 }
 
 .dots {

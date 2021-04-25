@@ -26,11 +26,15 @@ const Header: FC<HeaderProps> = ({login, sublogin, logout, fullscreenHandle}) =>
                 </div>
                 <button onClick={logout} className={s.logoutBtn}>
                     <span>Выйти</span>
-                    <SvgIcon width={'24px'} height={'24px'} fillColor={'#0D0D0D'} urlId={'logout'}/>
+                    <SvgIcon className={s.logoutIcon} urlId={'logout'}/>
                 </button>
-                <button onClick={fullscreenHandle.enter}>
-                    <SvgIcon width={'18px'} height={'18px'} fillColor={'#0D0D0D'} urlId={'full-screen'}/>
-                </button>
+                {fullscreenHandle.active ?
+                    <button className={s.fullscreenBtn} onClick={fullscreenHandle.exit}>
+                        <SvgIcon className={s.fullscreenIcon} urlId={'close-full-screen'}/>
+                    </button> : <button className={s.fullscreenBtn} onClick={fullscreenHandle.enter}>
+                        <SvgIcon className={s.fullscreenIcon} urlId={'full-screen'}/>
+                    </button>}
+
             </div>
         </header>
     )
