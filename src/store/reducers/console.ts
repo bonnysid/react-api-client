@@ -17,6 +17,14 @@ const consoleSlice = createSlice({
     initialState,
     reducers: {
         addQueryToHistory: (state: Draft<ConsoleState>, action: PayloadAction<IHistoryItem>) => {
+            const equalObj = state.history.items.find(item => {
+                const itemForEqual = {...item, id: 0}
+                const newItemForEqual = {...action.payload, id: 0}
+                return JSON.stringify(itemForEqual) === JSON.stringify(newItemForEqual)
+            })
+            if(equalObj){
+                state.history.items = state.history.items.filter(item => item.id !== equalObj.id)
+            }
             state.history.items.push(action.payload)
         },
         clearAllQueries: (state:Draft<ConsoleState>) => {
