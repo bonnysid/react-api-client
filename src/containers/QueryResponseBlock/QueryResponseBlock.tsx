@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useRef, useState} from "react";
-// import {JsonEditor as Editor} from 'jsoneditor-react'
+import {Resizable} from 're-resizable'
 import Editor from '../Editor/Editor'
 import s from './QueryResponseBlock.module.css'
 import {useTypedSelector} from "../../hooks/useTypedSelector";
