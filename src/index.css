@@ -89,8 +89,8 @@ nav ul{
 
 
 .jsoneditor div.jsoneditor-outer.has-main-menu-bar .ace-jsoneditor * {
-  font-family: SF Pro Text, sans-serif;
-  font-size: 14px;
+  /*font-family: SF Pro Text, sans-serif;*/
+  /*font-size: 14px;*/
 }
 
 div.jsoneditor {

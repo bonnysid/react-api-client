@@ -2,7 +2,6 @@ import React, {FC, useEffect, useRef, useState} from "react";
 import JSONEditor, {JSONEditorOptions} from "jsoneditor";
 import s from './Editor.module.css'
 import 'jsoneditor/dist/jsoneditor.css';
-import {QuerySendsay} from "../../types/types";
 
 export type modes = 'tree' | 'view' | 'form' | 'code' | 'text'
 
