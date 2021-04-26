@@ -31,6 +31,7 @@
     flex-direction: column;
     width: 50%;
     height: 100%;
+    color: #999999;
 }
 
 .item div {

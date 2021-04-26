@@ -1,6 +1,6 @@
-import React, {FC, useEffect, useRef} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import JSONEditor, {JSONEditorOptions} from "jsoneditor";
-import ace from 'brace'
+import s from './Editor.module.css'
 import 'jsoneditor/dist/jsoneditor.css';
 import {QuerySendsay} from "../../types/types";
 
@@ -17,7 +17,7 @@ export interface EditorProps {
     sortObjectKeys?: boolean,
     onChange: (dataObj: any, dataStr: string) => void,
     onFormat?: () => string,
-    onError?: (props?: any) => void,
+    onError?: (error: Error) => void,
     onModeChange?: (props?: any) => void,
     ace?: AceAjax.Ace,
     theme?: string,
@@ -35,6 +35,7 @@ export interface EditorProps {
 const Editor: FC<EditorProps> = (props) => {
     const containerRef = useRef<HTMLDivElement>(null)
     const editorRef = useRef<JSONEditor>()
+    const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         const {
@@ -62,6 +63,11 @@ const Editor: FC<EditorProps> = (props) => {
         if(props.formattedValue) editorRef.current!.updateText(props.formattedValue)
     }, [props.formattedValue])
 
+    const handleError = (error: Error) => {
+        props.onError!(error)
+        setIsError(true)
+    }
+
     // eslint-disable-next-line react/sort-comp
 
     const createEditor = ({value, onChange, tag, htmlElementProps, innerRef, ...rest}: EditorProps) => {
@@ -71,6 +77,7 @@ const Editor: FC<EditorProps> = (props) => {
 
         editorRef.current = new JSONEditor(containerRef.current!, {
             onChange: handleChange,
+            onError: handleError,
             ...rest
         });
 
@@ -97,8 +104,10 @@ const Editor: FC<EditorProps> = (props) => {
                 if(getText() !== JSON.stringify(currentJson)) {
                     updateText(getText())
                 }
+                setIsError(false)
             } catch (err) {
-                console.log(err)
+                props.onError!(err)
+                setIsError(true)
             }
         }
     }
@@ -122,7 +131,7 @@ const Editor: FC<EditorProps> = (props) => {
     }
 
     return (
-        <div ref={containerRef}/>
+        <div className={`${s.container} ${isError ? 'error-field' : ''}`} ref={containerRef}/>
     )
 }
 

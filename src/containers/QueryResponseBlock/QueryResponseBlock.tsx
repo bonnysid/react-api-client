@@ -19,6 +19,7 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
 
     const {response, loading, responseError} = useTypedSelector(state => state.console)
     const [formattedQuery, setFormattedQuery] = useState('')
+    const [isJsonError, setJsonError] = useState(false)
     const {request, resetError, clearResponse} = useActions()
 
     useEffect(() => {
@@ -38,11 +39,18 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
         <>
         <main className={s.container}>
             <div className={s.item}>
-                <span className={s.title}>Запрос:</span>
+                <span className={`${s.title} ${isJsonError ? 'error-text' : ''}`}>Запрос:</span>
                 <Editor
                     mode={'code'}
                     value={query}
-                    onChange={(data: QuerySendsay) => setQuery(data)}
+                    onChange={(data: QuerySendsay) => {
+                        setJsonError(false)
+                        setQuery(data)
+                    }}
+                    onError={error => {
+                        if(error) setJsonError(true)
+                        else setJsonError(false)
+                    }}
                     formattedValue={formattedQuery}
                     navigationBar={false}
                     search={false}
