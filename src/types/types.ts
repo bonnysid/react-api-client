@@ -6,6 +6,8 @@ export interface IAuthData {
     sublogin: string
 }
 
+export type Validator = (value: string) => undefined | string
+
 export interface IAuthPayload {
     login: string
     password: string

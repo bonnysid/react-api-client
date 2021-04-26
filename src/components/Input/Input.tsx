@@ -13,9 +13,8 @@ const Input: FC<InputProps> = ({name, placeholder, meta, input}) => {
     const hasError = meta.touched && meta.error;
     return (
         <div className={s.container}>
-            {hasError && <span className={'error-text'}>{meta.error}</span>}
-            <label className={s.label} htmlFor={`input-${name}`}>{name}</label>
-            <input id={`input-${name}`} className={s.input} {...input}/>
+            <label className={`${s.label} ${hasError ? 'error-text' : ''}`} htmlFor={`input-${name}`}>{name}</label>
+            <input id={`input-${name}`} className={`${s.input} ${hasError ? 'error-field' : ''}`} {...input}/>
         </div>
         
     )

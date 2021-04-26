@@ -34,6 +34,17 @@ nav ul{
   height: 100%;
 }
 
+.error-text {
+  color: #CF2C00;
+}
+
+.error-field {
+  border: 1px solid #CF2C00;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px rgba(207, 44, 0, 0.5);
+  border-radius: 5px;
+}
+
 .bg-red {
   background: #CF2C00;
 }

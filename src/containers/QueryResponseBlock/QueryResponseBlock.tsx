@@ -8,6 +8,7 @@ import GithubLink from "../../components/GithubLink/GithubLink";
 import SvgIcon from "../../components/SvgIcon/SvgIcon";
 import {useActions} from "../../hooks/useActions";
 import {QuerySendsay} from "../../types/types";
+import Loader from "../../components/Loader/Loader";
 
 export interface QueryResponseBlockProps {
     query: QuerySendsay,
@@ -54,7 +55,7 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
         </div>
         </main>
     <footer className={s.footer}>
-        <Button onClick={handleSendClick}>Отправить</Button>
+        <Button onClick={handleSendClick}>{loading ? <Loader/> : 'Отправить'}</Button>
         <GithubLink username={'bonnysid'}/>
         <button onClick={handleFormatClick} className={s.formatBtn}>
             <SvgIcon className={s.formatIcon} urlId={'format'}/>
