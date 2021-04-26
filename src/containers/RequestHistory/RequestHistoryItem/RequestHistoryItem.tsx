@@ -14,6 +14,7 @@ export interface RequestHistoryItemProps {
 
 const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
     const dropdownStylesRef = useRef<IDropdownStyles>()
+    const containerRef = useRef<HTMLDivElement>(null)
     const dropdownBtnRef = useRef<HTMLButtonElement>(null)
     const [isOpenModal, setIsOpenModal] = useState(false)
     const {removeQueryFromHistory} = useActions()
@@ -34,7 +35,12 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
 
     const toggleModal = () => setIsOpenModal(prevState => !prevState)
 
-    const copyQuery = () => {
+    const copyQuery = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const copyied = document.createElement('div')
+        copyied.classList.add(s.copied)
+        copyied.innerText = 'Скопировано'
+        containerRef.current!.prepend(copyied)
+        setTimeout(() => containerRef.current!.removeChild(copyied), 1500)
         navigator.clipboard.writeText(JSON.stringify(item.content, null, 2))
         toggleModal()
     }
@@ -46,7 +52,7 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
 
     return (
 
-        <div className={s.container}>
+        <div ref={containerRef} className={s.container}>
             <div className={`${s.status} ${item.isSuccess ? 'bg-green' : 'bg-red'}`}/>
             <span className={s.action}>{item.action}</span>
             <button className={s.toggleBtn} ref={dropdownBtnRef} onClick={openDropdownMenu}>

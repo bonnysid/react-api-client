@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     padding: 5px 0 5px 10px;
+    overflow: hidden;
 
     margin: 0 10px;
     width: fit-content;
@@ -78,11 +79,44 @@
 .modal__btn {
     display: flex;
     align-items: center;
+    position: relative;
     justify-content: center;
     width: 100%;
     padding: 10px 15px;
     line-height: 20px;
     color: #0D0D0D;
+}
+
+@keyframes copyAnim {
+    from {
+        top: 8px
+    }
+    10% {
+        top: 8px
+    }
+    to {
+        top: -20px
+    }
+}
+
+.copied {
+    position: absolute;
+    top: 8px;
+    right: 2px;
+    font-size: 12px;
+    color: #0D0D0D;
+
+    padding: 0px 5px;
+    display: flex;
+    align-items: center;
+
+    /* Underpaper */
+
+    background: #F6F6F6;
+    border-radius: 5px;
+    animation-name: copyAnim;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
 }
 
 .status {

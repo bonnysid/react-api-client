@@ -6,7 +6,7 @@ import {IDropdownStyles} from "../../../../types/types";
 export interface DropdownHistoryItemProps {
     toggleModal: () => void
     invokeQuery: () => void
-    copyQuery: () => void
+    copyQuery: (e: React.MouseEvent<HTMLButtonElement>) => void
     deleteQuery: () => void
     style: IDropdownStyles
     btnRef: React.RefObject<HTMLButtonElement>
