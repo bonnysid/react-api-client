@@ -24,7 +24,6 @@ const Slider: FC = ({children}) => {
     }
 
     const isDisableSlider = () => {
-        console.log(slider.current!.offsetWidth, slider.current!.offsetParent!.clientWidth)
         return slider.current!.offsetWidth < slider.current!.offsetParent!.clientWidth
     }
 
