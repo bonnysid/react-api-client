@@ -1,8 +1,9 @@
-import React, {FC, useState} from 'react'
+import React, {FC, useRef, useState} from 'react'
 import {IHistoryItem, QuerySendsay} from "../../../types/types";
 import SvgIcon from "../../../components/SvgIcon/SvgIcon";
 import s from './RequestHistoryItem.module.css';
 import {useActions} from "../../../hooks/useActions";
+import useOutsideHandler from "../../../hooks/useOutsideHandler";
 
 export interface RequestHistoryItemProps {
     item: IHistoryItem,
@@ -12,10 +13,13 @@ export interface RequestHistoryItemProps {
 const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
     const [isOpenModal, setIsOpenModal] = useState(false)
     const {removeQueryFromHistory} = useActions()
+    const modalRef = useRef<HTMLDivElement>(null)
 
     const deleteQuery = () => removeQueryFromHistory({id: item.id})
 
     const toggleModal = () => setIsOpenModal(prevState => !prevState)
+
+    useOutsideHandler(modalRef, toggleModal)
 
     const copyQuery = () => {
         navigator.clipboard.writeText(JSON.stringify(item.content, null, 2))
@@ -28,29 +32,28 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
     }
 
     return (
-        <>
-            {isOpenModal && <aside onClick={toggleModal} className={s.aside}/>}
-            <div className={s.container}>
-                <div className={`${s.status} ${item.isSuccess ? 'bg-green' : 'bg-red'}`}/>
-                <span className={s.action}>{item.action}</span>
-                <button className={s.toggleBtn} onClick={toggleModal}>
-                    <SvgIcon className={s.icon} urlId={'dots'}/>
-                </button>
-                {isOpenModal &&
 
-                <div className={s.modal}>
-                    <div className={s.modal__block}>
-                        <button onClick={invokeQuery} className={`${s.modal__btn}`}>Выполнить</button>
-                        <button onClick={copyQuery} className={`${s.modal__btn} bg-blue-hover`}>Скопировать</button>
-                    </div>
-                    <div className={s.modal__block}>
-                        <button onClick={deleteQuery} className={`${s.modal__btn} bg-red-hover`}>Удалить</button>
-                    </div>
+        <div className={s.container}>
+            <div className={`${s.status} ${item.isSuccess ? 'bg-green' : 'bg-red'}`}/>
+            <span className={s.action}>{item.action}</span>
+            <button className={s.toggleBtn} onClick={toggleModal}>
+                <SvgIcon className={s.icon} urlId={'dots'}/>
+            </button>
+            {isOpenModal &&
+
+            <div ref={modalRef} className={s.modal}>
+                <div className={s.modal__block}>
+                    <button onClick={invokeQuery} className={`${s.modal__btn} bg-blue-hover`}>Выполнить</button>
+                    <button onClick={copyQuery} className={`${s.modal__btn} bg-blue-hover`}>Скопировать</button>
                 </div>
-
-                }
+                <div className={s.modal__block}>
+                    <button onClick={deleteQuery} className={`${s.modal__btn} bg-red-hover`}>Удалить</button>
+                </div>
             </div>
-        </>
+
+            }
+        </div>
+
 
     )
 }

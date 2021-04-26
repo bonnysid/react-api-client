@@ -8,6 +8,8 @@ invoices.sqlites
 /node_modules
 /.pnp
 .pnp.js
+/__MACOSX
+/.idea
 
 # testing
 /coverage
