@@ -17,9 +17,14 @@ export interface QueryResponseBlockProps {
 
 const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
 
-    const {response, loading} = useTypedSelector(state => state.console)
+    const {response, loading, responseError} = useTypedSelector(state => state.console)
     const [formattedQuery, setFormattedQuery] = useState('')
-    const {request} = useActions()
+    const {request, resetError, clearResponse} = useActions()
+
+    useEffect(() => {
+        clearResponse()
+        resetError()
+    }, [])
 
     const handleSendClick = () => {
         request({query})
@@ -45,11 +50,11 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
             />
         </div>
         <div className={s.item}>
-            <span className={s.title}>Ответ:</span>
-            <div className={s.outer}>
+            <span className={`${s.title} ${responseError ? 'error-text' : ''}`}>Ответ:</span>
+            <div className={`${s.outer}  ${responseError ? 'error-field' : ''}`}>
                         <textarea
-                            className={s.response}
-                            value={response && JSON.stringify(response, null, 4)}
+                            className={`${s.response}`}
+                            value={response ? JSON.stringify(response, null, 4) : ''}
                             disabled={true}/>
             </div>
         </div>

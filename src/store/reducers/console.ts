@@ -3,6 +3,7 @@ import {IHistoryItem, QuerySendsay, ResponseData} from "../../types/types";
 
 export const initialState = {
     loading: false,
+    responseError: false,
     history: {
         size: 20,
         items: [
@@ -60,12 +61,16 @@ const consoleSlice = createSlice({
         },
         requestSuccess: (state: Draft<ConsoleState>, action: PayloadAction<ResponseData>) => {
             state.loading = false
+            state.responseError = false
             state.response = action.payload
         },
         requestFailure: (state: Draft<ConsoleState>, action: PayloadAction<ResponseData>) => {
-            console.log(action)
             state.loading = false
-            state.response = action.payload.data
+            state.responseError = true
+            state.response = action.payload
+        },
+        resetError: (state: Draft<ConsoleState>) => {
+            state.responseError = false
         }
     }
 })

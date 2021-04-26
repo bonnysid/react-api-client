@@ -24,7 +24,7 @@ export function* handleSendsayRequest(action: {type: ActionTypes.REQUEST, payloa
             id: Date.now(),
             isSuccess: false
         }))
-        yield put(requestFailure(data))
+        yield put(requestFailure(e))
     }
 
 }

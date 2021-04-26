@@ -24,7 +24,7 @@ const Slider: FC = ({children}) => {
     }
 
     const isLeftSliderEnd = () => {
-        if (translate.current > 0) {
+        if (translate.current < 0) {
             translate.current = 0
             slider.current!.style.transform = `translate(${translate.current}px)`
             return true
