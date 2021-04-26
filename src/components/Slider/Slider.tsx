@@ -15,12 +15,17 @@ const Slider: FC = ({children}) => {
     }
 
     const isRightSliderEnd = () => {
-        if (translate.current < Math.round(-slider.current!.offsetWidth / 2 - 20)) {
-            translate.current = Math.round(-slider.current!.offsetWidth / 2 - 20)
-            slider.current!.style.transform = `translate(${translate.current}px)`
+        if (slider.current!.offsetWidth + translate.current < slider.current!.offsetParent!.clientWidth) {
+            translate.current = -(slider.current!.offsetWidth - slider.current!.offsetParent!.clientWidth)
+            slider.current!.style.transform = `translate(${translate.current - 20}px)`
             return true
         }
         return false
+    }
+
+    const isDisableSlider = () => {
+        console.log(slider.current!.offsetWidth, slider.current!.offsetParent!.clientWidth)
+        return slider.current!.offsetWidth < slider.current!.offsetParent!.clientWidth
     }
 
     const isLeftSliderEnd = () => {
@@ -33,7 +38,7 @@ const Slider: FC = ({children}) => {
     }
 
     const onSliderMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        if (!isDown.current) return
+        if (!isDown.current || isDisableSlider()) return
         e.preventDefault()
         const x = e.pageX - offsetLeft.current
         const walk = x - startX.current
@@ -54,12 +59,13 @@ const Slider: FC = ({children}) => {
     }
 
     const onSliderScroll = (e: React.WheelEvent<HTMLDivElement>) => {
+        if(isDisableSlider()) return
         const walk = e.deltaY
-        translate.current = Math.sign(walk) === -1 ? translate.current - 20 : translate.current + 20
 
         if (isRightSliderEnd()) return
         else if(isLeftSliderEnd()) return
 
+        translate.current = Math.sign(walk) === -1 ? translate.current - 20 : translate.current && translate.current + 20
         slider.current!.style.transform = `translate(${translate.current}px)`
     }
 
