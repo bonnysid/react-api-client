@@ -9,6 +9,8 @@ import SvgIcon from "../../components/SvgIcon/SvgIcon";
 import {useActions} from "../../hooks/useActions";
 import {QuerySendsay} from "../../types/types";
 import Loader from "../../components/Loader/Loader";
+import {Resizable} from "re-resizable";
+import dots from '../../assets/icons/dots.svg'
 
 export interface QueryResponseBlockProps {
     query: QuerySendsay,
@@ -37,47 +39,69 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
 
     return (
         <>
-        <main className={s.container}>
-            <div className={s.item}>
-                <span className={`${s.title} ${isJsonError ? 'error-text' : ''}`}>Запрос:</span>
-                <Editor
-                    mode={'code'}
-                    value={query}
-                    onChange={(data: QuerySendsay) => {
-                        setJsonError(false)
-                        setQuery(data)
+            <main className={s.container}>
+                <Resizable
+                    style={{marginRight: 10}}
+                    minHeight={'100%'}
+                    defaultSize={{
+                        width: '50%',
+                        height: '100%'
                     }}
-                    onError={error => {
-                        if(error) setJsonError(true)
-                        else setJsonError(false)
+                    enable={{
+                        bottom: false,
+                        bottomLeft: false,
+                        bottomRight: false,
+                        left: false,
+                        top: false,
+                        topLeft: false,
+                        topRight: false,
+                        right: true
                     }}
-                    formattedValue={formattedQuery}
-                    navigationBar={false}
-                    search={false}
-                    statusBar={false}
-            />
-        </div>
-        <div className={s.item}>
-            <span className={`${s.title} ${responseError ? 'error-text' : ''}`}>Ответ:</span>
-            <div className={`${s.outer}  ${responseError ? 'error-field' : ''}`}>
+                >
+                    <div className={s.item}>
+                        <span className={`${s.title} ${isJsonError ? 'error-text' : ''}`}>Запрос:</span>
+                        <Editor
+                            mode={'code'}
+                            value={query}
+                            onChange={(data: QuerySendsay) => {
+                                setJsonError(false)
+                                setQuery(data)
+                            }}
+                            onError={error => {
+                                if (error) setJsonError(true)
+                                else setJsonError(false)
+                            }}
+                            formattedValue={formattedQuery}
+                            navigationBar={false}
+                            search={false}
+                            statusBar={false}
+                        />
+                    </div>
+                </Resizable>
+
+                <div className={s.item}>
+                    <span className={`${s.title} ${responseError ? 'error-text' : ''}`}>Ответ:</span>
+                    <div className={`${s.outer}  ${responseError ? 'error-field' : ''}`}>
                         <textarea
                             className={`${s.response}`}
                             value={response ? JSON.stringify(response, null, 4) : ''}
                             disabled={true}/>
-            </div>
-        </div>
-        </main>
-    <footer className={s.footer}>
-        <Button onClick={handleSendClick}>{loading ? <Loader/> : 'Отправить'}</Button>
-        <GithubLink username={'bonnysid'}/>
-        <button onClick={handleFormatClick} className={s.formatBtn}>
-            <SvgIcon className={s.formatIcon} urlId={'format'}/>
-            <span className={s.formatText}>Форматировать</span>
-        </button>
-    </footer>
-</>
+                    </div>
+                </div>
 
-)
+
+            </main>
+            <footer className={s.footer}>
+                <Button onClick={handleSendClick}>{loading ? <Loader/> : 'Отправить'}</Button>
+                <GithubLink username={'bonnysid'}/>
+                <button onClick={handleFormatClick} className={s.formatBtn}>
+                    <SvgIcon className={s.formatIcon} urlId={'format'}/>
+                    <span className={s.formatText}>Форматировать</span>
+                </button>
+            </footer>
+        </>
+
+    )
 }
 
 export default QueryResponseBlock

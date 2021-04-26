@@ -34,6 +34,7 @@ nav ul{
   height: 100%;
 }
 
+
 .error-text {
   color: #CF2C00;
 }
@@ -84,6 +85,12 @@ nav ul{
 .jsoneditor div.jsoneditor-outer.has-main-menu-bar {
   margin: 0;
   padding: 10px;
+}
+
+
+.jsoneditor div.jsoneditor-outer.has-main-menu-bar .ace-jsoneditor * {
+  font-family: SF Pro Text, sans-serif;
+  font-size: 14px;
 }
 
 div.jsoneditor {
