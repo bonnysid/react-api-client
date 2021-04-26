@@ -6,7 +6,7 @@ import {useActions} from "../../../hooks/useActions";
 import useOutsideHandler from "../../../hooks/useOutsideHandler";
 import ModalPortal from "../../ModalPortal/ModalPortal";
 import DropdownHistoryItem from "./HistoryItemDropdown/DropdownHistoryItem";
-
+import dots from '../../../assets/icons/dots.svg'
 export interface RequestHistoryItemProps {
     item: IHistoryItem,
     execQuery: (value: QuerySendsay) => void
@@ -50,7 +50,7 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
             <div className={`${s.status} ${item.isSuccess ? 'bg-green' : 'bg-red'}`}/>
             <span className={s.action}>{item.action}</span>
             <button className={s.toggleBtn} ref={dropdownBtnRef} onClick={openDropdownMenu}>
-                <SvgIcon className={s.icon} urlId={'dots'}/>
+                <img className={s.icon} src={dots} alt=""/>
             </button>
             {isOpenModal &&
             <ModalPortal>
