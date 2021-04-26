@@ -38,10 +38,10 @@
     color: #999999;
 }
 
-.item:nth-child(1):before {
+.item:last-child:after {
     content: url("../../assets/icons/dots.svg");
     position: absolute;
-    right: -6px;
+    left: -7px;
     bottom: 50%;
     width: 4px;
     height: 18px;

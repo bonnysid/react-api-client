@@ -41,7 +41,7 @@ const QueryResponseBlock: FC<QueryResponseBlockProps> = ({query, setQuery}) => {
         <>
             <main className={s.container}>
                 <Resizable
-                    style={{marginRight: 10}}
+                    style={{marginRight: 5, paddingRight: 5}}
                     minHeight={'100%'}
                     defaultSize={{
                         width: '50%',
