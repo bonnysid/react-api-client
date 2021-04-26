@@ -9,7 +9,7 @@ export interface ModalPortalProps {
 const ModalPortal: FC<ModalPortalProps> = ({
                                                children,
                                                el = 'div',
-                                               className = 'root-modal'
+                                               className = 'root-modal',
                                            }) => {
     const root = document.createElement(el)
     root.classList.add(className)

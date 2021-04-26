@@ -1,9 +1,11 @@
 import React, {FC, useRef, useState} from 'react'
-import {IHistoryItem, QuerySendsay} from "../../../types/types";
+import {IDropdownStyles, IHistoryItem, QuerySendsay} from "../../../types/types";
 import SvgIcon from "../../../components/SvgIcon/SvgIcon";
 import s from './RequestHistoryItem.module.css';
 import {useActions} from "../../../hooks/useActions";
 import useOutsideHandler from "../../../hooks/useOutsideHandler";
+import ModalPortal from "../../ModalPortal/ModalPortal";
+import DropdownHistoryItem from "./HistoryItemDropdown/DropdownHistoryItem";
 
 export interface RequestHistoryItemProps {
     item: IHistoryItem,
@@ -11,15 +13,26 @@ export interface RequestHistoryItemProps {
 }
 
 const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
+    const dropdownStylesRef = useRef<IDropdownStyles>()
+    const dropdownBtnRef = useRef<HTMLButtonElement>(null)
     const [isOpenModal, setIsOpenModal] = useState(false)
     const {removeQueryFromHistory} = useActions()
-    const modalRef = useRef<HTMLDivElement>(null)
+
 
     const deleteQuery = () => removeQueryFromHistory({id: item.id})
 
-    const toggleModal = () => setIsOpenModal(prevState => !prevState)
+    const openDropdownMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const rect = e.currentTarget.closest("div")!.getBoundingClientRect();
+        const left = rect.x + rect.width - 110
+        dropdownStylesRef.current ={
+            left: left < 0 ? rect.x : left,
+            top: rect.y + window.scrollY + rect.height,
+            width: rect.width
+        }
+        toggleModal()
+    }
 
-    useOutsideHandler(modalRef, toggleModal)
+    const toggleModal = () => setIsOpenModal(prevState => !prevState)
 
     const copyQuery = () => {
         navigator.clipboard.writeText(JSON.stringify(item.content, null, 2))
@@ -36,22 +49,20 @@ const RequestHistoryItem: FC<RequestHistoryItemProps> = ({item, execQuery}) => {
         <div className={s.container}>
             <div className={`${s.status} ${item.isSuccess ? 'bg-green' : 'bg-red'}`}/>
             <span className={s.action}>{item.action}</span>
-            <button className={s.toggleBtn} onClick={toggleModal}>
+            <button className={s.toggleBtn} ref={dropdownBtnRef} onClick={openDropdownMenu}>
                 <SvgIcon className={s.icon} urlId={'dots'}/>
             </button>
             {isOpenModal &&
-
-            <div ref={modalRef} className={s.modal}>
-                <div className={s.modal__block}>
-                    <button onClick={invokeQuery} className={`${s.modal__btn} bg-blue-hover`}>Выполнить</button>
-                    <button onClick={copyQuery} className={`${s.modal__btn} bg-blue-hover`}>Скопировать</button>
-                </div>
-                <div className={s.modal__block}>
-                    <button onClick={deleteQuery} className={`${s.modal__btn} bg-red-hover`}>Удалить</button>
-                </div>
-            </div>
-
-            }
+            <ModalPortal>
+                <DropdownHistoryItem
+                    toggleModal={toggleModal}
+                    invokeQuery={invokeQuery}
+                    copyQuery={copyQuery}
+                    deleteQuery={deleteQuery}
+                    style={dropdownStylesRef.current!}
+                    btnRef={dropdownBtnRef}
+                />
+            </ModalPortal>}
         </div>
 
 

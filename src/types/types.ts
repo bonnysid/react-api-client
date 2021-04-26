@@ -6,6 +6,12 @@ export interface IAuthData {
     sublogin: string
 }
 
+export interface IDropdownStyles {
+    left: number
+    top: number
+    width: number
+}
+
 export type Validator = (value: string) => undefined | string
 
 export interface IAuthPayload {
